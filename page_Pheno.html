@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library game</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    
+    <div id="PlayerTimerDiv">
+        <span id="playerTimer1">owo</span>
+        <span id="playerTimer2">uwu</span>
+    </div>
+    
+    <div id="test">
+        I have text for now.
+    </div>
+    
+    <br><br>
+    <div id="all">[Where all books are displayed.]</div>
+    
+</body>
+
+<!-- // // // // // // // // // // // // // // -->
+
+<script src="src/js/delta_time_calc.js"></script>
+<script src="src/js/global.js"></script>
+<script src="src/js/allTimers.js"></script>
+<script src="src/js/livres.js"></script>
+<script src="src/js/gameManager.js"></script>
+<script src="src/js/booksDisplay.js"></script>
+<script src="src/js/pointsCalculator.js"></script>
+<script>
+    // displayAll();
+    var myInterval = setInterval(tick, 0);
+
+    function tick() {
+        delta = delta_time();
+        test(delta);
+        playerTimers(delta);
+        globalTimer(delta);
+    }
+
+
+    /**///////// TEST ////////
+    const rc = document.getElementById("all");
+    function displayBooks() {
+        for (k in newMonster["livres_voles"]) {
+            book = newMonster["livres_voles"][k];
+            rc.innerHTML += `${(k)?("<br><div>"):("<div>")}
+                <p><strong>- ${book['titre']}</strong><br>
+                <p>- Auteur: ${book['auteur']}<br>
+                <p>- Nom: ${book['nom']}<br>
+                <p>- Genre: ${book['genre']}<br>
+                ${("littérature" in book)?("<p>- Littérature: "+book['littérature']+"<br>"):("")}
+                <p>- Format: ${book['format']}<br>
+                </div>`
+        }
+    }
+    newMonster = makeMonster();
+    rc.innerHTML = `New monster:<br>
+        Nom: ${newMonster["nom"]},<br>
+        Nombre de livres volés: ${newMonster["nb_livres_voles"]},<br>
+        Livres volés: `;
+        displayBooks();
+    rc.innerHTML += `
+        Velocite: ${newMonster["velocite"]}
+    `;
+    //////// TEST ////////
+
+</script>
+</html>
