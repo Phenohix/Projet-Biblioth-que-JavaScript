@@ -44,11 +44,12 @@
     }
 
 
-    /**///////// TEST ////////
+    //// !ZONE DE TESTS EN BAS! ////
+    /**///////// TEST MONSTER ////////
     const rc = document.getElementById("all");
-    function displayBooks() {
-        for (k in newMonster["livres_voles"]) {
-            book = newMonster["livres_voles"][k];
+    function displayBooks(monster) {
+        for (k in monster["livres_voles"]) {
+            book = monster["livres_voles"][k];
             rc.innerHTML += `${(k)?("<br><div>"):("<div>")}
                 <p><strong>- ${book['titre']}</strong><br>
                 <p>- Auteur: ${book['auteur']}<br>
@@ -64,11 +65,16 @@
         Nom: ${newMonster["nom"]},<br>
         Nombre de livres volés: ${newMonster["nb_livres_voles"]},<br>
         Livres volés: `;
-        displayBooks();
+        displayBooks(newMonster);
     rc.innerHTML += `
-        Velocite: ${newMonster["velocite"]}
+        Velocite: ${newMonster["velocite"]} ;
+        Vitesse: ${newMonster["vitesse"]}
     `;
-    //////// TEST ////////
+    //////// TEST MONSTER ////////
+    //////// TEST POINTS ////////
+    rc.innerHTML += `<br><br>
+        Points : ${getPoints(newMonster["livres_voles"])}`
+    //////// TEST POINTS ////////
 
 </script>
 </html>

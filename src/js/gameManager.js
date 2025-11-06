@@ -1,6 +1,8 @@
 let playing = true;
-let libraryBag = library;
+let libraryBag = copy(library);
 let random = Math.random;
+SHELF_SIZE = 10;
+BASE_VELOCITY = 400;
 
 let bestiary = [
     {"nom": "Gluant d'encre", "nb_livres_voles": 1, "livres_voles": [], "velocite": [2, 3]},
@@ -18,16 +20,19 @@ function getBook() {
 }
 
 function makeMonster(id = -1) {
-    if (id>-1 && id<bestiary.length) { bestiary[id]; }
+    if (id>-1 && id<bestiary.length) { monster = bestiary[id]; }
     else { monster = bestiary[floor(random()*bestiary.length)]; }
     
-    let velocityRange = monster["velocite"];
-    let velocity = floor(random()*velocityRange[1]-velocityRange[0]+1)+velocityRange[0];
+    let velocityMin = monster["velocite"][0];
+    let velocityMax = monster["velocite"][1];
+    let velocity = floor(random()*(velocityMax-velocityMin+1))+velocityMin; console.log(monster["nom"], ":", velocityMin);
     monster["velocite"] = velocity;
 
     for (let i=0 ; i<monster["nb_livres_voles"] ; i++) {
         monster["livres_voles"].splice(monster["livres_voles"].length, 0, getBook());
     }
+
+    monster["vitesse"] = monster["velocite"] * BASE_VELOCITY;
 
     return monster;
 }

@@ -4,6 +4,9 @@ let startTime = new Date().getTime();
 let round = Math.round
 let floor = Math.floor
 
+
+function copy(tcpy) { return tcpy; }
+
 function time_see(ms, compensation) {
     seconds = ms/1000;
     minutes = seconds/60; seconds = floor(seconds%60);
