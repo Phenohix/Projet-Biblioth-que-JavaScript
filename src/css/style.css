@@ -34,3 +34,10 @@ body, html{height: 100%; width: 100%; top: 0;}
 p {
   text-indent: 2em;
 }
+
+body {
+  background: lightblue;
+  background-image: url("../art/flower_pattern.svg");
+  background-size: 75px 75px;
+  background-repeat: repeat-y-x;
+}

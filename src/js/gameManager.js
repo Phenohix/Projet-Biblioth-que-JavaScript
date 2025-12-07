@@ -2,13 +2,14 @@ let playing = true;
 let libraryBag = copy(library);
 let random = Math.random;
 SHELF_SIZE = 10;
-BASE_VELOCITY = 400;
+BASE_VELOCITY = 50;
 
 let bestiary = [
-    {"nom": "Gluant d'encre", "nb_livres_voles": 1, "livres_voles": [], "velocite": [2, 3]},
-    {"nom": "Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [1, 2]},
-    {"nom": "Hobegobelin chariot", "nb_livres_voles": 5, "livres_voles": [], "velocite": [2, 5]},
-    {"nom": "Oeil mordeur", "nb_livres_voles": 1, "livres_voles": [], "velocite": [1, 3]}
+    {"nom": "Gluant d'encre", "nb_livres_voles": 1, "livres_voles": [], "velocite": [2, 3], "position": [0,0]},
+    {"nom": "Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [1, 2], "position": [0,0]},
+    {"nom": "Double Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [2, 4], "position": [0,0]},
+    {"nom": "Hobegobelin chariot", "nb_livres_voles": 5, "livres_voles": [], "velocite": [2, 5], "position": [0,0]},
+    {"nom": "Oeil mordeur", "nb_livres_voles": 1, "livres_voles": [], "velocite": [1, 3], "position": [0,0]}
 ]
 
 function getBook() {
@@ -25,7 +26,7 @@ function makeMonster(id = -1) {
     
     let velocityMin = monster["velocite"][0];
     let velocityMax = monster["velocite"][1];
-    let velocity = floor(random()*(velocityMax-velocityMin+1))+velocityMin; console.log(monster["nom"], ":", velocityMin);
+    let velocity = floor(random()*(velocityMax-velocityMin+1))+velocityMin;
     monster["velocite"] = velocity;
 
     for (let i=0 ; i<monster["nb_livres_voles"] ; i++) {

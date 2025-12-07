@@ -20,6 +20,10 @@
     
     <br><br>
     <div id="all">[Where all books are displayed.]</div>
+
+    
+    <div id="scene"></div>
+
     
 </body>
 
@@ -32,16 +36,31 @@
 <script src="src/js/gameManager.js"></script>
 <script src="src/js/booksDisplay.js"></script>
 <script src="src/js/pointsCalculator.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="src/js/d3Elements/d3CartGoblin.js"></script>
 <script>
     // displayAll();
     var myInterval = setInterval(tick, 0);
+    spawnedMonsters=[]
+    async function spawnGoblin() {
+        const monster = makeMonster(0);
+        monster.group = await createCartGoblin(
+            monster.position[0], monster.position[1]
+        );
+
+        spawnedMonsters.push(monster);
+    }
+    spawnGoblin();
 
     function tick() {
         delta = delta_time();
         test(delta);
         playerTimers(delta);
         globalTimer(delta);
+        spawnedMonsters.forEach(m => m.position=updateMonster(delta, m.velocite, m.group, m.position));
     }
+    
+
 
 
     //// !ZONE DE TESTS EN BAS! ////
@@ -77,4 +96,5 @@
     //////// TEST POINTS ////////
 
 </script>
+
 </html>
