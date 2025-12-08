@@ -29,6 +29,7 @@
 
 <!-- // // // // // // // // // // // // // // -->
 
+<!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
 <script src="src/js/delta_time_calc.js"></script>
 <script src="src/js/global.js"></script>
 <script src="src/js/allTimers.js"></script>
@@ -36,12 +37,17 @@
 <script src="src/js/gameManager.js"></script>
 <script src="src/js/booksDisplay.js"></script>
 <script src="src/js/pointsCalculator.js"></script>
+
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="src/js/d3Elements/d3CartGoblin.js"></script>
+<script src="src/js/d3Elements/d3MonsterMovement.js"></script>
+<!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
+
 <script>
     // displayAll();
     var myInterval = setInterval(tick, 0);
-    spawnedMonsters=[]
+    spawnedMonsters=[]; activeMonsters=[];
+    bestiary.forEach(b => { activeMonsters[b.nom] = []; console.log(b.nom); }); console.log("activeMonsters: ", activeMonsters);
     async function spawnGoblin() {
         const monster = makeMonster(0);
         monster.group = await createCartGoblin(
@@ -57,7 +63,14 @@
         test(delta);
         playerTimers(delta);
         globalTimer(delta);
-        spawnedMonsters.forEach(m => m.position=updateMonster(delta, m.velocite, m.group, m.position));
+
+        let monstersToDelete=[]; let monsterCounter=0;
+        spawnedMonsters.forEach(m => {
+            m.position=updateMonster(delta, m.velocite, m.group, m.position);
+            if (m.position[0] > m.position[2]/-2) {monstersToDelete.push(copy(monsterCounter))};
+            monsterCounter++;
+        });
+        for (let i=monstersToDelete.length-1 ; i>=0 ; i--) { spawnedMonsters.splice(monstersToDelete[i], 1); }
     }
     
 

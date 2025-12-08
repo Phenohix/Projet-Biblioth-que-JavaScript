@@ -24,7 +24,7 @@ async function createCartGoblin(x, y) {
   const bar    = group.node().appendChild(barXML.documentElement);
   const cart   = group.node().appendChild(cartXML.documentElement);
 
-  // Now align elements — tweak these numbers visually
+  // Aligning the elements visually
   d3.select(cart)
     .attr("transform", "translate(0,40)");
 
@@ -36,15 +36,3 @@ async function createCartGoblin(x, y) {
 
   return group
 };
-
-window.updateMonster = function(delta, velocity, group, position) {
-  if (position[0] > 6150) { position[0] = -615; }
-  else { position[0] += BASE_VELOCITY * velocity * delta; }
-
-  group.attr(
-    "transform",
-    `translate(${position[0]}, ${position[1]}) scale(0.08)`
-  );
-
-  return position;
-}
