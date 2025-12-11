@@ -2,9 +2,9 @@ async function createCartGoblin(x, y) {
 
   // Load all SVG files as real SVG DOM
   const [cartXML, goblinXML, barXML] = await Promise.all([
-    d3.xml("src/art/Cart.svg"),
-    d3.xml("src/art/Gobelin-Green__leg_L_Forth.svg"),
-    d3.xml("src/art/Cart_handle.svg"),
+    d3.xml("art/Cart.svg"),
+    d3.xml("art/Gobelin-Green__leg_L_Forth.svg"),
+    d3.xml("art/Cart_handle.svg"),
   ]);
 
   // Create main SVG container
