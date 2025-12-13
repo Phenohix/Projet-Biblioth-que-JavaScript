@@ -34,11 +34,11 @@ function playerTimers(delta) {
 function globalTimer(delta) {
     let timeLeft = GLOBAL_TIME_LIMIT-(timeElapsed*10);
     if (timeLeft>0) {
-        document.getElementById("test").innerText += `
+        document.getElementById("test").innerText = `
                 Time left: ${time_see(timeLeft, 0)}s
             `;
     }
-    else {document.getElementById("test").innerText += `
+    else {document.getElementById("test").innerText = `
                 Time's up!
             `;}
 }

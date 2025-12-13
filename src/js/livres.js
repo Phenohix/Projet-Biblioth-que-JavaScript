@@ -152,4 +152,5 @@ library = [{"titre":"La vie devant soi", "auteur":"Emile Ajar", "nom":"Ajar", "g
 {"titre":"Marina", "auteur":"Carlos Luis Zafon", "nom":"Zafon", "genre":"roman", "littérature":"espagnole", "format":"medium"},
 {"titre":"Germinal", "auteur":"Emile Zola", "nom":"Zola", "genre":"roman", "format":"medium"},
 {"titre":"L'assommoir", "auteur":"Emile Zola", "nom":"Zola", "genre":"roman", "format":"medium"},
-{"titre":"La bête humaine", "auteur":"Emile Zola", "nom":"Zola", "genre":"roman", "format":"medium"}];
+{"titre":"La bête humaine", "auteur":"Emile Zola", "nom":"Zola", "genre":"roman", "format":"medium"},
+{"titre":"Le chaton et le corbeau", "auteur":"Tetsumesu Milan", "nom":"Milan", "genre":"roman", "littérature":"francaise", "format":"medium"}];

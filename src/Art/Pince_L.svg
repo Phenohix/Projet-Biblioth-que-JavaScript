@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="2094.000000pt"
+   height="4334.000000pt"
+   viewBox="0 0 2094.000000 4334.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg1"
+   sodipodi:docname="Pince.L.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="708.52099"
+     inkscape:cy="5135.0094"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     style="fill:#cbcdcd;stroke:#c2c9ca;stroke-width:0;stroke-linejoin:round;paint-order:stroke fill markers;fill-opacity:1"
+     d="M 1043.9714,3733.2587 H 663.44294 v 504.8741 l -43.2219,70.0036 -52.76785,20.6829 H 466.6875 L 398.625,4284 381,4231.875 v -698.2193 l 40.5,-64.1557 59.25,-19.3125 h 563.2214"
+     id="path2"
+     inkscape:label="Color" />
+  <g
+     transform="matrix(0.1,0,0,-0.1,0,4334)"
+     fill="#000000"
+     stroke="none"
+     id="g1">
+    <path
+       d="M4790 8884 c-182 -26 -285 -56 -410 -119 -337 -170 -569 -490 -625 -862 -22 -145 -22 -6758 -1 -6903 57 -375 291 -701 621 -864 236 -117 408 -141 921 -133 393 6 486 21 686 107 319 137 565 431 653 779 45 179 45 157 45 2681 l0 2385 1880 -3 1880 -2 0 60 0 60 -1920 -2 c-1827 -3 -1920 -4 -1937 -21 -17 -17 -18 -135 -23 -2525 -5 -2363 -7 -2511 -24 -2582 -75 -318 -291 -585 -582 -721 -47 -22 -129 -52 -182 -67 l-97 -26 -455 -1 c-404 0 -465 2 -540 18 -199 43 -364 133 -511 277 -149 148 -228 284 -288 499 l-26 96 0 3430 0 3430 23 90 c69 273 225 496 446 640 141 92 283 144 456 165 56 7 1012 10 2872 10 l2788 0 0 55 0 55 -2812 -1 c-1547 -1 -2824 -3 -2838 -5z"
+       id="path1" />
+  </g>
+</svg>

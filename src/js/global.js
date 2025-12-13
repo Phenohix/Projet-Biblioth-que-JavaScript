@@ -20,20 +20,20 @@ function test(delta) {
 
     timeElapsed += 100 * delta;
 
-    if (timeElapsed<goal) {
-        document.getElementById("test").innerText = `
-            Progression: ${round(timeElapsed)} / ${goal}
-            Start time: ${time_see(startTime, 1)}
-            Current time: ${time_see(currentTime, 1)}
-            Time elapsed: ${time_see(timeElapsed*10, 0)}
-            fps: ${round(1/delta)}
-        `;
-    }
-    else {
-        document.getElementById("test").innerText = `
-            Progression: ${round(timeElapsed)} / ${goal}
-            You got it boss!!
-        `;
-        if (timeElapsed>=goal*2) {timeElapsed=0;}
-    }
+    // if (timeElapsed<goal) {
+    //     document.getElementById("test").innerText = `
+    //         Progression: ${round(timeElapsed)} / ${goal}
+    //         Start time: ${time_see(startTime, 1)}
+    //         Current time: ${time_see(currentTime, 1)}
+    //         Time elapsed: ${time_see(timeElapsed*10, 0)}
+    //         fps: ${round(1/delta)}
+    //     `;
+    // }
+    // else {
+    //     document.getElementById("test").innerText = `
+    //         Progression: ${round(timeElapsed)} / ${goal}
+    //         You got it boss!!
+    //     `;
+    //     if (timeElapsed>=goal*2) {timeElapsed=0;}
+    // }
 }

@@ -2,14 +2,14 @@ let playing = true;
 let libraryBag = copy(library);
 let random = Math.random;
 SHELF_SIZE = 10;
-BASE_VELOCITY = 50;
+BASE_VELOCITY = 40;
 
 let bestiary = [
-    {"nom": "Gluant d'encre", "nb_livres_voles": 1, "livres_voles": [], "velocite": [2, 3], "position": [-615,0,-615]},
-    {"nom": "Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [1, 2], "position": [0,0]},
-    {"nom": "Double Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [2, 4], "position": [0,0]},
-    {"nom": "Hobegobelin chariot", "nb_livres_voles": 5, "livres_voles": [], "velocite": [2, 5], "position": [0,0]},
-    {"nom": "Oeil mordeur", "nb_livres_voles": 1, "livres_voles": [], "velocite": [1, 3], "position": [0,0]}
+    {"nom": "Gluant d'encre", "nb_livres_voles": 1, "livres_voles": [], "velocite": [2, 3], "position": [-615,-240,-615]},
+    {"nom": "Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [1, 2], "position": [0,0,-615]},
+    {"nom": "Double Gobelin chariot", "nb_livres_voles": 3, "livres_voles": [], "velocite": [2, 4], "position": [0,0,-615]},
+    {"nom": "Hobegobelin chariot", "nb_livres_voles": 5, "livres_voles": [], "velocite": [2, 5], "position": [0,0,-615]},
+    {"nom": "Oeil mordeur", "nb_livres_voles": 1, "livres_voles": [], "velocite": [1, 3], "position": [0,,-6150]}
 ]
 
 function getBook() {
@@ -43,5 +43,5 @@ function game() {
     if (!libraryBag.length) {playing = false;}
     if (!playing) {return;}
 
-    monster = makeMonster();
+    // monster = makeMonster();
 }
