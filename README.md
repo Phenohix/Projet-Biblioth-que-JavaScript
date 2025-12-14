@@ -12,4 +12,4 @@
 - système poussé de comptage de points (pas affiché)
 - déplacement des élements D3
 - Système de suivis de la souris (non utilisé)
-- `{- language espagnol -}`
+
