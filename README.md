@@ -16,7 +16,15 @@
 - Système de vélocitée semi-aléatoire pour les transporteurs de livres
 - Système de sélection aléatoire de livres avec random bag
 
+
 ## Capture d'écrans :
 
 ![ScreenShot 01](./screenShot/sc_01.png)
 ![ScreenShot 02](./screenShot/sc_02.png)
+
+
+## Problèmes rencontrés :
+- Corruption de données hardcodées par D3.js
+- Node non fonctionnel sous-windows (tests impossibles sue ordinateu personnel d'un des programmeurs)
+- Refus de notre par de recourir à l'IA *(contrairement à nos autres collègues)*
+ - de fait manque de temps dû à une surcharge de travail (large quantité de contrôles continus, projet de programmation S4 comptant pour 5 etcs)
