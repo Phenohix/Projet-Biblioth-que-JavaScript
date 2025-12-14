@@ -25,6 +25,7 @@
 
 ## Problèmes rencontrés :
 - Corruption de données hardcodées par D3.js
-- Node non fonctionnel sous-windows (tests impossibles sue ordinateu personnel d'un des programmeurs)
+- Node non fonctionnel sous-windows *(tests impossibles sur l'ordinateur personnel d'un des programmeurs)*
 - Refus de notre par de recourir à l'IA *(contrairement à nos autres collègues)*
     - de fait manque de temps dû à une surcharge de travail *(large quantité de contrôles continus, projet de programmation S4 comptant pour 5 etcs)*
+    - ainsi qu'impossibilité d'exploiter les fonctionnalités de D3.js dû à une documentation trop brumeuse
