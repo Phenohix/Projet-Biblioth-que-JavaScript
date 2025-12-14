@@ -2,13 +2,13 @@ async function createBook(format) {
 
   // Load all SVG files as real SVG DOM
   const [bookXML] = await Promise.all([
-    d3.xml("art/BookShelf/Book_"+format+".svg")
+    d3.xml("src/art/BookShelf/Book_"+format+".svg")
   ]);
 
   // Add a scaling group so everything scales together
   const group = svg.append("g")
     .attr("class", "book-group")
-    .attr("transform", `translate(800, 0) scale(${SCALE})`);
+    .attr("transform", `translate(${809+50*((format=="medium")?(1):((format=="poche")?(2):(0)))}, ${19}) scale(${SCALE})`);
 
   // Append each asset in correct stacking order:
   const book   = group.node().appendChild(bookXML.documentElement);
@@ -39,13 +39,13 @@ async function createShelf(pos, y, side) {
 
   // Load all SVG files as real SVG DOM
   const [bottomPartXML, topPartXML] = await Promise.all([
-    d3.xml("./art/BookShelf/Book-shelf-_"+posShelf[0]+".svg"),
-    d3.xml("./art/BookShelf/Book-shelf-_"+posShelf[1]+".svg")
+    d3.xml("src/art/BookShelf/Book-shelf-_"+posShelf[0]+".svg"),
+    d3.xml("src/art/BookShelf/Book-shelf-_"+posShelf[1]+".svg")
   ]);
 
   // Add a scaling group so everything scales together
   const group = svg.append("g")
-    .attr("class", "book-group")
+    .attr("class", "bookshelf-group")
     .attr("transform", `translate(${800*(side-1) || 0}, ${275*(2-y) || 0}) scale(${SCALE})`);
 
   // Append each asset in correct stacking order:

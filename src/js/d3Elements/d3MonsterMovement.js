@@ -22,7 +22,7 @@ window.updateMonster = function(delta, velocity, group, position) {
 
   group.attr(
     "transform",
-    `translate(${position[0]}, ${position[1]}) scale(0.07)`
+    `translate(${position[0]}, ${SCENE_HEIGHT-301-position[1]}) scale(0.07)`
   );
 
   return position;

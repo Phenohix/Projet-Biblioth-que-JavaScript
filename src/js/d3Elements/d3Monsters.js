@@ -33,7 +33,7 @@ async function createCartGoblin(x, y, groupID) {
 
   // Load all SVG files as real SVG DOM
   const [cart_goblinXML] = await Promise.all([
-    d3.xml("./art/Cart_goblin.svg")
+    d3.xml("src/art/Cart_goblin.svg")
   ]);
 
   // Add a scaling group so everything scales together
@@ -55,7 +55,7 @@ async function createInkSlime(x, y, groupID) {
 
   // Load all SVG files as real SVG DOM
   const [ink_slimeXML] = await Promise.all([
-    d3.xml("./art/Ink_slime.svg")
+    d3.xml("src/art/Ink_slime.svg")
   ]);
 
   // Add a scaling group so everything scales together

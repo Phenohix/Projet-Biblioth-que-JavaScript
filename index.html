@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library game</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    
+    <div id="PlayerTimerDiv">
+        <span id="playerTimer1">owo</span>
+        <span id="playerTimer2">uwu</span>
+    </div>
+    
+    <div id="test">
+        I have text for now.
+    </div>
+    
+    <!-- <br><br>
+    <div id="all">[Where all books are displayed.]</div> -->
+
+    
+    <div id="scene"></div>
+
+    
+</body>
+
+<!-- // // // // // // // // // // // // // // -->
+
+<!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
+<script src="src/js/delta_time_calc.js"></script>
+<script src="src/js/global.js"></script>
+<script src="src/js/allTimers.js"></script>
+<script src="src/js/livres.js"></script>
+<script src="src/js/gameManager.js"></script>
+<script src="src/js/booksDisplay.js"></script>
+<script src="src/js/pointsCalculator.js"></script>
+
+<script src="src/js/d3Elements/d3.v7.min.js.js"></script>
+<script src="src/js/d3Elements/d3MonsterMovement.js"></script>
+<script src="src/js/d3Elements/d3Monsters.js"></script>
+<script src="src/js/d3Elements/d3RobotPlayer1.js"></script>
+<script src="src/js/d3Elements/d3RobotPlayer2.js"></script>
+<script src="src/js/d3Elements/d3BookShelves.js"></script>
+<!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
+
+<script>
+    // displayAll();
+    var myInterval = setInterval(tick, 16); // approx 60 FPS
+
+    createShelf("bottom", 0, 1); createShelf("middle", 1, 1); createShelf("top", 2, 1);
+    createShelf("bottom", 0, 2); createShelf("middle", 1, 2); createShelf("top", 2, 2);
+
+    let spawnedMonsters=[];
+    let inactiveMonsters={};
+    let movingBooks=[];
+
+    bestiary.forEach(b => { inactiveMonsters[b.nom] = []; console.log(b.nom); }); console.log("activeMonsters: ", inactiveMonsters);
+
+    async function spawnMonster(id, groupID) {
+        const monster = makeMonster(id);
+        // monster.position[1] = SCENE_HEIGHT-301;
+        switch (id) {
+            case 0:
+                monster.group = await createInkSlime(monster.position[0], monster.position[1], groupID);
+                break;
+            case 1:
+                monster.group = await createCartGoblin(monster.position[0], monster.position[1], groupID);
+                break;
+        }
+        inactiveMonsters[monster.nom].push(monster);
+    }
+    async function generateMonsters() {
+        spawnMonster(1, "gA"); // Gobelin chariot
+        spawnMonster(1, "gB");
+        spawnMonster(1, "gC");
+        spawnMonster(1, "gD");
+        spawnMonster(1, "gE");
+        movingBooks=createBook("grand"); // To test having book follow monster
+        spawnMonster(0, "sA"); // Gluant d'encre
+        spawnMonster(0, "sB");
+        spawnMonster(0, "sC");
+        spawnMonster(0, "sD");
+        spawnMonster(0, "sE");
+    }
+    generateMonsters();
+    // let players=[{"position": [0,0]}, {"position": [0,0]}];
+    // async function spawnPlayers() {
+    //     players[0]["group"] = await createPlayer1(players[0].position[0], players[0].position[1]);
+    //     players[1]["group"] = await createPlayer2(players[1].position[0], players[1].position[1]);
+    // }
+    // spawnPlayers();
+
+    createBook("grand");
+    createBook("medium");
+    createBook("poche");
+
+    function tick() {
+        delta = delta_time();
+        test(delta);
+        playerTimers(delta);
+        let timeLeft=globalTimer(delta);
+
+        let monstersToDelete=[]; let monsterCounter=0;
+        spawnedMonsters.forEach(m => {
+            m.position=updateMonster(delta, m.velocite, m.group, m.position);
+            updateMonster(delta, m.velocite, movingBooks.group, [m.position[0], m.position[1]+50, m.position[2]]); // Book following monster
+            if (m.position[0] < m.position[2]) {monstersToDelete.push(copy(monsterCounter))};
+            monsterCounter++;
+        });
+        for (let i=monstersToDelete.length-1 ; i>=0 ; i--) {
+            inactiveMonsters[spawnedMonsters[monstersToDelete[i]].nom].push(spawnedMonsters[monstersToDelete[i]]);
+            spawnedMonsters.splice(monstersToDelete[i], 1);
+        }
+        if (spawnedMonsters.length < 1) {
+            for (k in inactiveMonsters) {
+                if (inactiveMonsters[k].length > 0) {
+                    spawnedMonsters.push(inactiveMonsters[k].shift());
+                    break;
+                }
+            }
+        }
+        // players[0].position=updatePlayer(players[0]["position"], players[0]["position"])
+        
+        
+        if (!game(timeLeft<=0)) { clearInterval(myInterval); }
+    }
+    
+
+
+
+    // // //// !ZONE DE TESTS EN BAS! ////
+    // // /**///////// TEST MONSTER ////////
+    // // const rc = document.getElementById("all");
+    // // function displayBooks(monster) {
+    // //     for (k in monster["livres_voles"]) {
+    // //         book = monster["livres_voles"][k];
+    // //         rc.innerHTML += `${(k)?("<br><div>"):("<div>")}
+    // //             <p><strong>- ${book['titre']}</strong><br>
+    // //             <p>- Auteur: ${book['auteur']}<br>
+    // //             <p>- Nom: ${book['nom']}<br>
+    // //             <p>- Genre: ${book['genre']}<br>
+    // //             ${("littérature" in book)?("<p>- Littérature: "+book['littérature']+"<br>"):("")}
+    // //             <p>- Format: ${book['format']}<br>
+    // //             </div>`
+    // //     }
+    // // }
+    // // newMonster = makeMonster();
+    // // rc.innerHTML = `New monster:<br>
+    // //     Nom: ${newMonster["nom"]},<br>
+    // //     Nombre de livres volés: ${newMonster["nb_livres_voles"]},<br>
+    // //     Livres volés: `;
+    // //     displayBooks(newMonster);
+    // // rc.innerHTML += `
+    // //     Velocite: ${newMonster["velocite"]} ;
+    // //     Vitesse: ${newMonster["vitesse"]}
+    // // `;
+    // // //////// TEST MONSTER ////////
+    // // //////// TEST POINTS ////////
+    // // rc.innerHTML += `<br><br>
+    // //     Points : ${getPoints(newMonster["livres_voles"])}`
+    // // //////// TEST POINTS ////////
+
+</script>
+
+</html>
