@@ -8,7 +8,7 @@ async function createBook(format) {
   // Add a scaling group so everything scales together
   const group = svg.append("g")
     .attr("class", "book-group")
-    .attr("transform", `translate(-800, 0) scale(${SCALE})`);
+    .attr("transform", `translate(800, 0) scale(${SCALE})`);
 
   // Append each asset in correct stacking order:
   const book   = group.node().appendChild(bookXML.documentElement);

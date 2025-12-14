@@ -2,11 +2,11 @@ SCENE_WIDTH = screen.availWidth
 SCENE_HEIGHT = screen.availHeight+80
 SCALE = 0.07
 const scene = document.getElementById("scene");
-const mouse = {
-  x: 0,
-  y: 0,
-  inside: false
-};
+// const mouse = {
+//   x: 0,
+//   y: 0,
+//   inside: false
+// };
 
 // Create main SVG container
 const svg = d3.select("#scene")

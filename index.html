@@ -48,36 +48,52 @@
 
 <script>
     // displayAll();
-    var myInterval = setInterval(tick, 0);
+    var myInterval = setInterval(tick, 16); // approx 60 FPS
 
     createShelf("bottom", 0, 1); createShelf("middle", 1, 1); createShelf("top", 2, 1);
     createShelf("bottom", 0, 2); createShelf("middle", 1, 2); createShelf("top", 2, 2);
 
     let spawnedMonsters=[];
-    let activeMonsters=[];
+    let inactiveMonsters={};
 
-    bestiary.forEach(b => { activeMonsters[b.nom] = []; console.log(b.nom); }); console.log("activeMonsters: ", activeMonsters);
+    bestiary.forEach(b => { inactiveMonsters[b.nom] = []; console.log(b.nom); }); console.log("activeMonsters: ", inactiveMonsters);
 
     async function spawnMonster(id, groupID) {
         const monster = makeMonster(id);
         monster.position[1] = SCENE_HEIGHT-301;
         switch (id) {
-            case 0: monster.group = await createInkSlime(monster.position[0], monster.position[1], groupID);
-            case 1: monster.group = await createCartGoblin(monster.position[0], monster.position[1], groupID);
+            case 0:
+                monster.group = await createInkSlime(monster.position[0], monster.position[1], groupID);
+                break;
+            case 1:
+                monster.group = await createCartGoblin(monster.position[0], monster.position[1], groupID);
+                break;
         }
-        spawnedMonsters.push(monster);
+        inactiveMonsters[monster.nom].push(monster);
     }
-    const groupIDs = ['A', 'B', 'C', 'D', 'E'];
-    for (i in groupIDs) {
-        spawnMonster(1, `g${groupIDs[i]}`);
-        spawnMonster(0, `s${groupIDs[i]}`);
-    } console.log("GROUP INFO :", spawnedMonsters);
+    async function generateMonsters() {
+        spawnMonster(1, "gA"); // Gobelin chariot
+        spawnMonster(1, "gB");
+        spawnMonster(1, "gC");
+        spawnMonster(1, "gD");
+        spawnMonster(1, "gE");
+        spawnMonster(0, "sA"); // Gluant d'encre
+        spawnMonster(0, "sB");
+        spawnMonster(0, "sC");
+        spawnMonster(0, "sD");
+        spawnMonster(0, "sE");
+    }
+    generateMonsters();
     // let players=[{"position": [0,0]}, {"position": [0,0]}];
     // async function spawnPlayers() {
     //     players[0]["group"] = await createPlayer1(players[0].position[0], players[0].position[1]);
     //     players[1]["group"] = await createPlayer2(players[1].position[0], players[1].position[1]);
     // }
     // spawnPlayers();
+
+    createBook("grand");
+    createBook("medium");
+    createBook("poche");
 
     function tick() {
         delta = delta_time();
@@ -88,10 +104,22 @@
         let monstersToDelete=[]; let monsterCounter=0;
         spawnedMonsters.forEach(m => {
             m.position=updateMonster(delta, m.velocite, m.group, m.position);
+            console.log("MONSTER NAME:", m.nom, "POS:", m.position, "GROUP:", m.group);
             if (m.position[0] < m.position[2]) {monstersToDelete.push(copy(monsterCounter))};
             monsterCounter++;
         });
-        for (let i=monstersToDelete.length-1 ; i>=0 ; i--) { spawnedMonsters.splice(monstersToDelete[i], 1); }
+        for (let i=monstersToDelete.length-1 ; i>=0 ; i--) {
+            inactiveMonsters[spawnedMonsters[monstersToDelete[i]].nom].push(spawnedMonsters[monstersToDelete[i]]);
+            spawnedMonsters.splice(monstersToDelete[i], 1);
+        }
+        if (spawnedMonsters.length < 1) {
+            for (k in inactiveMonsters) {
+                if (inactiveMonsters[k].length > 0) {
+                    spawnedMonsters.push(inactiveMonsters[k].shift());
+                    break;
+                }
+            }
+        }
         // players[0].position=updatePlayer(players[0]["position"], players[0]["position"])
         
         

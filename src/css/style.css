@@ -53,3 +53,5 @@ body::before {
     background-image: url("../art/background.jpg");
     background-blend-mode:luminosity;
 }
+
+cursor { cursor: url('../art/mdp/Robot_cursor.png'), auto; }

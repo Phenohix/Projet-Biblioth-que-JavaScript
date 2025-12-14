@@ -38,7 +38,7 @@ async function createCartGoblin(x, y, groupID) {
 
   // Add a scaling group so everything scales together
   const group = svg.append("g")
-    .attr("class", "goblin-group"+groupID)
+    .attr("class", groupID)
     .attr("transform", `translate(${x || 0}, ${y || 0}) scale(${SCALE})`);
 
   // Append each asset in correct stacking order:
@@ -60,7 +60,7 @@ async function createInkSlime(x, y, groupID) {
 
   // Add a scaling group so everything scales together
   const group = svg.append("g")
-    .attr("class", "slime-group"+groupID)
+    .attr("class", groupID)
     .attr("transform", `translate(${x || 0}, ${y || 0}) scale(${SCALE})`);
 
   // Append each asset in correct stacking order:
