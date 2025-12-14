@@ -2,11 +2,11 @@ async function createPlayer2(x, y) {
 
   // Load all SVG files as real SVG DOM
   const [bodyXML, eyeXML, scleraXML, pinceLXML, pinceRXML] = await Promise.all([
-    d3.xml("src/art/Robot_Body.svg"),
-    d3.xml("src/art/Robot_Eye-Blue.svg"),
-    d3.xml("src/art/Robot_Sclera.svg"),
-    d3.xml("src/art/Pince_L.svg"),
-    d3.xml("src/art/Pince_R.svg")
+    d3.xml("./art/Robot_Body.svg"),
+    d3.xml("./art/Robot_Eye-Blue.svg"),
+    d3.xml("./art/Robot_Sclera.svg"),
+    d3.xml("./art/Pince_L.svg"),
+    d3.xml("./art/Pince_R.svg")
   ]);
 
   // Add a scaling group so everything scales together

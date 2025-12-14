@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const https = require('https');
 const fs = require('fs');
+const { contentType } = require('express/lib/response');
 const options = {
     key: fs.readFileSync('server.key'),  // Chemin vers votre clé privée
     cert: fs.readFileSync('server.cert') // Chemin vers votre certificat
@@ -16,12 +17,14 @@ app.use(express.static('src',{
       res.setHeader('Content-Type', 'application/javascript');  
     } else if (path.endsWith('.css')) {  
       res.setHeader('Content-Type', 'text/css');  
-    }  
+    } else if (path.endsWith('.svg')) {
+      res.setHeader('Content-Type', "image/svg+xml")
+    }
   } 
 }));
 
 app.get('/', (request, response) => {
-    response.sendFile('src/index.html', {root: __dirname});
+    response.sendFile('/index.html', {root: __dirname});
 });
 
 /*

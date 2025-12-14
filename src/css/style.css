@@ -36,8 +36,6 @@ p {
 }
 
 body {
-    z-index: 25;
-    position: relative;
 }
 body::before {
     z-index: -3;
