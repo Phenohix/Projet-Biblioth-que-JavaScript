@@ -18,5 +18,5 @@
 
 ## Capture d'écrans :
 
-[./screenShot/sc_01.png]
-[./screenShot/sc_02.png]
+[ScreenShot 01](./screenShot/sc_01.png)
+[ScreenShot 02](./screenShot/sc_02.png)
