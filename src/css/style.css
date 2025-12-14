@@ -16,7 +16,34 @@ body, html{height: 100%; width: 100%; top: 0;}
 :root {
     --opacityPlayer1: 100%;
     --opacityPlayer2: 55%;
+    --BackColor1: #1e2340;
+    --BackColor2: #5e5ba6;
+    --TextColor1: #FFFFFF;
+    --TextColor2: #b4baff;
+    --spoilerGradient: #5e5ba6 #727199;
 }
+
+body {
+    background-color: var(--BackColor1);
+    color: var(--TextColor1);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {font-size: 2.3em;padding-bottom: .2em;}
+p{font-size: 1.2em;}
+a{color: var(--TextColor2);font-style: none;text-decoration: none;}
+a:hover {text-decoration: underline;}
+button {
+    background-color: var(--BackColor2);
+    border: none;
+    border-radius: 0em;
+    color: var(--TextColor1);
+    padding: 1em;
+}
+button:hover {
+    opacity: .8;
+}
+
 
 #playerTimer1 {
     opacity: var(--opacityPlayer1);
@@ -29,6 +56,115 @@ body, html{height: 100%; width: 100%; top: 0;}
     display: flex;
     flex-direction: row;
     gap: 1em;
+}
+
+#scene svg {
+    height: 100svh;
+    width: auto;
+}
+
+.hiden {
+    display: none !important;
+}
+
+header {
+    top: 0;
+    padding: 1em 2em;
+    margin: 0;
+    /*background-color: var(--BackColor1);*/
+    backdrop-filter: Blur(10px);
+    display: flex;
+    width: 100%;
+    gap: 1.5em;
+    position: fixed;
+}
+
+
+#quitDiv, #joinDiv {
+    display: flex;
+    padding: 0em;
+    align-items: stretch;
+}
+#joinDiv #joinButton {
+    border-top-right-radius: .75em;
+    border-bottom-right-radius: .75em;
+}
+#joinDiv #joinName {
+    border-top-left-radius: .75em;
+    border-bottom-left-radius: .75em;
+    border: none;
+    padding-left: 1.5em;
+}
+
+#quitDiv {
+    gap: 1em;
+    align-items: center;
+    border-right: 1em;
+}
+#quitDiv #quitButton {
+    border-radius: .75em;
+}
+
+#playerListOver {
+    align-items: center;
+    align-content: center;
+    margin-left: 2em;
+    background-color: var(--BackColor2);
+    border-radius: .75em;
+    width: 9.5em;
+    text-align: center;
+    padding: 0 1em;
+}
+#playerListOver:hover {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/*#playerListOver:hover #playerListBorder::before{
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: var(--BackColor2);
+    display: contents;
+    position: absolute;
+    margin-left: 1em;
+    margin-top: 0;
+}
+
+#playerListOver:hover #playerListBorder::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    display: contents;
+    position: absolute;
+    margin-left: 1em;
+    margin-top: 0em;
+    background-color: var(--BackColor1);
+    border-bottom-left-radius: 1em;
+}*/
+
+#playerListOver #playerList {
+    display: none;
+    flex-wrap: wrap;
+    max-height: 25svh;
+}
+#playerListOver:hover #playerList{/*hover*/
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 4.2em;
+    background-color: var(--BackColor2);
+    border-radius: .75em;
+    padding: 1em;
+    /*outline: 2px solid;
+    outline-color: var(--BackColor1);*/
+    width: 9.5em;
+    gap: 1em;
+    margin-left: -1em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0px 8px 15px -5px #1e234080;
+    overflow: hidden;
 }
 
 p {
@@ -55,3 +191,75 @@ body::before {
 }
 
 cursor { cursor: url('../art/mdp/Robot_cursor.png'), auto; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#chatDiv {
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1em;
+    position: fixed;
+    right: 2em;
+    height: 80svh;
+    top: 10svh;
+}
+
+#chatDisplay {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 5;
+    /*background-color: var(--BackColor2);*/
+    backdrop-filter: Blur(10px);
+    border: 1px solid var(--BackColor2);
+    padding: 1em;
+    border-radius: .75em;
+    gap: .75em;
+    overflow: scroll;
+}
+
+#chatDisplay div {
+    background-color: var(--BackColor1);
+    border-radius: .5em;
+    padding: .75em;
+}
+
+#chatDisplay div .pseudo {
+    color: var(--TextColor2);
+}
+
+#chatDisplay div .message {
+    font-size: .85em;
+}
+
+#chatSendDiv {
+    font-size: .75em;
+    display: flex;
+    align-items: stretch;
+}
+#chatSendDiv input {
+    width: 100%;
+    padding-left: 1em;
+    border-top-left-radius: .75em;
+    border-bottom-left-radius: .75em;
+    border: none;
+}
+#chatSendDiv #chatSendMessage {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: .75em;
+    border-bottom-right-radius: .75em;
+}

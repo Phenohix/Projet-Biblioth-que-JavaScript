@@ -5,18 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library game</title>
     <link rel="stylesheet" href="./css/style.css">
+
+      <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
+    <header>
+         <div id="joinDiv">
+            <input type="text" placeholder="Your Name" minlength="3" maxlength="10" name="joinName" id="joinName">
+            <button id="joinButton">Join Party</button>
+         </div>
+   
+         <div id="quitDiv" class="hiden">
+            <h3 id="playerNameDisplay"></h3><button id="quitButton">Quit Party</button>
+         </div>
 
-    <div id="PlayerTimerDiv">
-        <span id="playerTimer1">owo</span>
-        <span id="playerTimer2">uwu</span>
-    </div>
+         <div id="playerListOver">
+            <h4>Player List &#x2193</h4>
+            <div id="playerList"></div>
+            <div id="playerListBorder"></div>
+         </div>
+   
+         <div id="PlayerTimerDiv">
+             <span id="playerTimer1">owo</span>
+             <span id="playerTimer2">uwu</span>
+         </div>
+        
+        <div id="menu">     
+             <div id="test">
+                 I have text for now.
+             </div>
+        </div>
+    </header>
+
+        <div id="chatDiv">
+               <div id="chatDisplay"></div>
+               <div id="chatSendDiv">
+                  <input type="text" name="" id="chatSendInput">
+                  <button id="chatSendMessage">Send</button>
+               </div>
+            </div>
+        
+        
     
-    <div id="test">
-        I have text for now.
-    </div>
     
     <!-- <br><br>
     <div id="all">[Where all books are displayed.]</div> -->
@@ -44,6 +75,7 @@
 <script src="./js/d3Elements/d3RobotPlayer1.js"></script>
 <script src="./js/d3Elements/d3RobotPlayer2.js"></script>
 <script src="./js/d3Elements/d3BookShelves.js"></script>
+<script src="./js/app.js"></script>
 <!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
 
 <script>
@@ -60,7 +92,7 @@
 
     async function spawnMonster(id, groupID) {
         const monster = makeMonster(id);
-        monster.position[1] = SCENE_HEIGHT-301;
+        monster.position[1] = SCENE_HEIGHT-971;
         switch (id) {
             case 0:
                 monster.group = await createInkSlime(monster.position[0], monster.position[1], groupID);
