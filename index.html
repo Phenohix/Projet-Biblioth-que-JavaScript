@@ -18,8 +18,8 @@
         I have text for now.
     </div>
     
-    <br><br>
-    <div id="all">[Where all books are displayed.]</div>
+    <!-- <br><br>
+    <div id="all">[Where all books are displayed.]</div> -->
 
     
     <div id="scene"></div>
@@ -40,14 +40,18 @@
 
 <script src="src/js/d3Elements/d3.v7.min.js.js"></script>
 <script src="src/js/d3Elements/d3MonsterMovement.js"></script>
-<script src="src/js/d3Elements/d3CartGoblin.js"></script>
+<script src="src/js/d3Elements/d3Monsters.js"></script>
 <script src="src/js/d3Elements/d3RobotPlayer1.js"></script>
 <script src="src/js/d3Elements/d3RobotPlayer2.js"></script>
+<script src="src/js/d3Elements/d3BookShelves.js"></script>
 <!-- \\ \\ \\ \\ \\ JS files \\ \\ \\ \\ \\ \\ -->
 
 <script>
     // displayAll();
     var myInterval = setInterval(tick, 0);
+
+    createShelf("bottom", 0, 1); createShelf("middle", 1, 1); createShelf("top", 2, 1);
+    createShelf("bottom", 0, 2); createShelf("middle", 1, 2); createShelf("top", 2, 2);
 
     let spawnedMonsters=[];
     let activeMonsters=[];
@@ -56,22 +60,30 @@
 
     async function spawnMonster(id, groupID) {
         const monster = makeMonster(id);
-        monster.group = await createCartGoblin(monster.position[0], monster.position[1], groupID);
+        monster.position[1] = SCENE_HEIGHT-301;
+        switch (id) {
+            case 0: monster.group = await createInkSlime(monster.position[0], monster.position[1], groupID);
+            case 1: monster.group = await createCartGoblin(monster.position[0], monster.position[1], groupID);
+        }
         spawnedMonsters.push(monster);
     }
-    spawnMonster(0, "gA");
-    let players=[{"position": [0,0]}, {"position": [0,0]}];
-    async function spawnPlayers() {
-        players[0]["group"] = await createPlayer1(players[0].position[0], players[0].position[1]);
-        players[1]["group"] = await createPlayer2(players[1].position[0], players[1].position[1]);
-    }
-    spawnPlayers();
+    const groupIDs = ['A', 'B', 'C', 'D', 'E'];
+    for (i in groupIDs) {
+        spawnMonster(1, `g${groupIDs[i]}`);
+        spawnMonster(0, `s${groupIDs[i]}`);
+    } console.log("GROUP INFO :", spawnedMonsters);
+    // let players=[{"position": [0,0]}, {"position": [0,0]}];
+    // async function spawnPlayers() {
+    //     players[0]["group"] = await createPlayer1(players[0].position[0], players[0].position[1]);
+    //     players[1]["group"] = await createPlayer2(players[1].position[0], players[1].position[1]);
+    // }
+    // spawnPlayers();
 
     function tick() {
         delta = delta_time();
         test(delta);
         playerTimers(delta);
-        globalTimer(delta);
+        let timeLeft=globalTimer(delta);
 
         let monstersToDelete=[]; let monsterCounter=0;
         spawnedMonsters.forEach(m => {
@@ -80,7 +92,10 @@
             monsterCounter++;
         });
         for (let i=monstersToDelete.length-1 ; i>=0 ; i--) { spawnedMonsters.splice(monstersToDelete[i], 1); }
-        players[0].position=updatePlayer(players[0]["position"], players[0]["position"])
+        // players[0].position=updatePlayer(players[0]["position"], players[0]["position"])
+        
+        
+        if (!game(timeLeft<=0)) { clearInterval(myInterval); }
     }
     
 

@@ -1,5 +1,5 @@
 SCENE_WIDTH = screen.availWidth
-SCENE_HEIGHT = screen.availHeight
+SCENE_HEIGHT = screen.availHeight+80
 SCALE = 0.07
 const scene = document.getElementById("scene");
 const mouse = {
@@ -22,30 +22,30 @@ window.updateMonster = function(delta, velocity, group, position) {
 
   group.attr(
     "transform",
-    `translate(${position[0]}, ${position[1]+SCENE_HEIGHT}) scale(0.07)`
+    `translate(${position[0]}, ${position[1]}) scale(0.07)`
   );
 
   return position;
 }
 
-scene.addEventListener("pointermove", (e) => {
-  const rect = scene.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
-  mouse.inside = true;
-});
+// scene.addEventListener("pointermove", (e) => {
+//   const rect = scene.getBoundingClientRect();
+//   mouse.x = e.clientX - rect.left;
+//   mouse.y = e.clientY - rect.top;
+//   mouse.inside = true;
+// });
 
-scene.addEventListener("pointerleave", () => {
-  mouse.inside = false;
-});
+// scene.addEventListener("pointerleave", () => {
+//   mouse.inside = false;
+// });
 
-window.updatePlayer = function(group, position) {
-  position[0]=mouse.x; position[1]=mouse.y;
+// window.updatePlayer = function(group, position) {
+//   position[0]=mouse.x; position[1]=mouse.y;
 
-  group.attr(
-    "transform",
-    `translate(${Math.round(position[0])}, ${Math.round(position[1])}) scale(0.07)`
-  );
+//   group.attr(
+//     "transform",
+//     `translate(${Math.round(position[0])}, ${Math.round(position[1])}) scale(0.07)`
+//   );
 
-  return position;
-}
+//   return position;
+// }

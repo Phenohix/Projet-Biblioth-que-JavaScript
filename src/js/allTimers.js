@@ -41,4 +41,5 @@ function globalTimer(delta) {
     else {document.getElementById("test").innerText = `
                 Time's up!
             `;}
+    return timeLeft;
 }
